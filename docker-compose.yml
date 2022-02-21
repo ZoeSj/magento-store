@@ -1,0 +1,91 @@
+version: '2'
+services:
+  apache:
+    image: underser/magento2
+    container_name: magentoSample_apache
+    ports:
+      - "8028:80" # web
+      - "443:443"
+      - "9001:9000" # xdebug
+      # - "35729:35729" # live reload
+    volumes:
+      - ./src:/var/www/html:delegated
+      - ~/.composer:/var/www/.composer:delegated
+      - ~/.npm:/var/www/.npm
+    environment:
+      XDEBUG_CONFIG: "remote_host=localhost" # if you use OS X - change to --- "remote_host=10.254.254.254 remote_connect_back=0"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - magentoSample-network
+
+  db:
+    image: mariadb
+    container_name: magentoSample_db
+    ports:
+     - 3300:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=magento
+      - MYSQL_DATABASE=magento
+      - MYSQL_USER=magento
+      - MYSQL_PASSWORD=magento
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./src:/home
+    networks:
+      - magentoSample-network
+
+  redis:
+    image: redis
+    container_name: magentoSample_redis
+    ports:
+     - 6379
+    networks:
+      - magentoSample-network
+
+  redis-session:
+    image: redis
+    container_name: magentoSample_redis-session
+    ports:
+     - 6379
+    networks:
+      - magentoSample-network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: magentoSample_mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - magentoSample-network
+
+  elasticsearch:
+    image: elasticsearch:6.8.1
+    container_name: magentoSample_elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elasticsearchdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - magentoSample-network
+
+networks:
+  magentoSample-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
