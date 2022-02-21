@@ -31,10 +31,9 @@ Add new file called src on root directory.Put all your project files under ./src
 ```
 cd src
 rm -rf index.php
-composer create-project 
 ```
 ```
---repository-url=https://repo.magento.com/ magento/project-community-edition=2.3.4 ./ --ignore-platform-reqs
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.3.4 ./ --ignore-platform-reqs
 
 cd ..
 ```
