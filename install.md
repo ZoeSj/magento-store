@@ -24,6 +24,7 @@ b go to the file and git clone this project
 bin/init #init the project,and just name the project then enter.
 ```
 ### step 4 go to src and get the magento code
+add new file called src on root.
 ```
 cd src
 rm -rf index.php
