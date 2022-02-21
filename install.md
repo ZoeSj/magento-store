@@ -43,7 +43,7 @@ docker compose up
 bin/copytocontainer --all # Copy all your files from host machine to container by running
 bin/permissions
 ```
-### step 6 go to web and install the magento
+### step 6 go to [web](http://local.magento.com:8028/) and install the magento
 just care the php ext(sockets),maybe you need to install it on docker apache container.
 ```
 RUN docker-php-ext-install sockets
