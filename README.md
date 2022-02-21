@@ -19,29 +19,6 @@ Install [Docker](https://docs.docker.com/docker-for-mac/install/), [Docker-compo
 
 Install [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/) and [Docker-compose](https://docs.docker.com/compose/install/#install-compose).
 
-### How to use
-
-Clone this repository:
-```
-git clone git@github.com:underser/magento2-docker.git <project_folder>
-```
-Go to <project_folder>:
-```
-./init
-```
-<sup>Script ask you about project name, and link to git repo</sup>
-
-Put all your project files under ./src directory
-
-Run:
-```
-docker-compose up -d
-```
-Copy all your files from host machine to container by running:
-```
-./bin/copytocontainer --all
-```
-
 After initialization you'll get 6 docker containers running:
 
 | Container  | Ports(host/container)  | Description  |
