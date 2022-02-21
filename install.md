@@ -10,6 +10,7 @@ here is mine:
 Docker version 20.10.5, build 55c4c88
 
 docker-compose -v
+
 here is mine:
 docker-compose version 1.29.0, build 07737305
 ```
