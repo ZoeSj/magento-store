@@ -6,6 +6,10 @@ First of all, thank [rafaelstz](https://github.com/rafaelstz) this project is ba
 
 ### Apache 2.4 + (PHP 7.3 + OPCache + XDebug) + MariaDB + Redis + Elasticsearch 6.8
 
+### **How to install?**
+You could go to [here](https://github.com/ZoeSj/magento-store/blob/master/install.md) to see.
+
+
 ### Requirements
 
 **MacOS:**
